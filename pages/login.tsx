@@ -14,7 +14,7 @@ export default function Login() {
   } = useForm();
 
   return (
-    <>
+    <div className={styles.container}>
       <Header></Header>
       <Title></Title>
       <form className={styles.formContainer}>
@@ -34,6 +34,6 @@ export default function Login() {
       </form>
 
       <SocialButtonGroup></SocialButtonGroup>
-    </>
+    </div>
   );
 }

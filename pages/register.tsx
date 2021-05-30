@@ -29,7 +29,7 @@ export default function Register() {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <Header></Header>
       <Title></Title>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
@@ -59,6 +59,6 @@ export default function Register() {
         </button>
       </form>
       <SocialButtonGroup></SocialButtonGroup>
-    </>
+    </div>
   );
 }
