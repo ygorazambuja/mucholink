@@ -1,6 +1,7 @@
 import dbConnect from "../../../utils/dbConnect";
 import User from "../../../models/User";
 
+// @ts-ignore
 export default async function handler(req, res) {
   const { method } = req;
 
