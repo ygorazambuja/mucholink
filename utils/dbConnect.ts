@@ -5,10 +5,10 @@ const MONGO_URL = process.env.MONGO_URL;
 if (!MONGO_URL) {
   throw new Error("MONGO_URL not found");
 }
-
+// @ts-ignore
 let cached = global.mongoose;
-
 if (!cached) {
+  // @ts-ignore
   cached = global.mongoose = { conn: null, promise: null };
 }
 
@@ -25,7 +25,7 @@ async function dbConnect() {
       useFindAndModify: true,
       useCreateIndex: true,
     };
-
+    // @ts-ignore
     cached.promise = mongoose.connect(MONGO_URL, opts).then((mongoose) => {
       return mongoose;
     });
