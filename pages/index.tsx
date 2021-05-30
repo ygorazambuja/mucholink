@@ -2,10 +2,14 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Lottie from "react-lottie";
 import animationData from "../assets/53558-mexican-fella.json";
-import Title from "../components/Title";
 import WelcomeTitle from "../components/WelcomeTitle";
 
+import { useRouter } from "next/router";
+
+import styles from "../styles/Home.module.scss";
+
 export default function Home() {
+  const router = useRouter();
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -24,9 +28,33 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header></Header>
-        <WelcomeTitle></WelcomeTitle>
-        <Lottie options={defaultOptions} height={400} width={400}></Lottie>
+        <div className={styles.container}>
+          <Header></Header>
+          <WelcomeTitle></WelcomeTitle>
+          <Lottie options={defaultOptions} height={400} width={400}></Lottie>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <button
+              onClick={() => {
+                router.push("/register");
+              }}
+            >
+              Registrar
+            </button>
+            <button
+              onClick={() => {
+                router.push("/login");
+              }}
+            >
+              Login
+            </button>
+          </div>
+        </div>
       </main>
     </div>
   );
