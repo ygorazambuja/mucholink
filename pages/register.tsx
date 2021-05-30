@@ -16,41 +16,49 @@ export default function Register() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (formData: {
+  const doRegister = async (formData: {
     email: string;
     username: string;
     password: string;
     confirmationPassword: string;
   }) => {
+    console.log(formData);
     const response = await RegisterUser({ ...formData });
     const json = await response.json();
 
-    console.log(json);
+    if (json?.error?.code === 11000) {
+      console.log("validation error");
+    }
   };
 
   return (
     <div className={styles.container}>
-      <Header></Header>
+      <Header backRoute></Header>
       <Title></Title>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
+      <form
+        onSubmit={handleSubmit(doRegister)}
+        className={styles.formContainer}
+      >
         <input
-          {...register("email")}
+          {...register("email", { required: true })}
           placeholder="Email"
           className={styledInput.input}
         ></input>
         <input
-          {...register("username")}
+          {...register("username", { required: true })}
           placeholder="Username"
           className={styledInput.input}
         ></input>
         <input
           {...register("password")}
           placeholder="Password"
+          type="password"
           className={styledInput.input}
         ></input>
         <input
           {...register("confirmationPassword")}
           placeholder="Confirmation Password"
+          type="password"
           className={styledInput.input}
         ></input>
 

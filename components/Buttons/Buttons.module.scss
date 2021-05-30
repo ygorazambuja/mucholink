@@ -1,0 +1,40 @@
+.loginButton {
+  border: none;
+  padding: 19px 40px;
+  border-radius: 18px;
+  font-family: "Abeezee", serif;
+  background-color: #fff3f3;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+
+  &:hover {
+    transition: 0.5s;
+    color: white;
+    background-color: #3e3e3e;
+    transform: scale(1.1);
+  }
+}
+
+.registerButton {
+  border: none;
+  padding: 19px 40px;
+  border-radius: 18px;
+  font-family: "Abeezee", serif;
+  background-color: #3e3e3e;
+  border: 1px solid white;
+  color: #fff3f3;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
+  &:hover {
+    transition: 0.5s;
+    color: #3e3e3e;
+    background-color: #fff3f3;
+    transform: scale(1.1);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

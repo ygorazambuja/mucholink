@@ -1,3 +1,5 @@
+@import "variables";
+
 .input {
   padding: 20px;
   border-radius: 18px;
@@ -5,7 +7,11 @@
   border: 1px solid #ffffff;
   margin-bottom: 15px;
   &::placeholder {
-    font-family: "Abeezee", sans-serif;
+    font-family: $--font-family;
     font-weight: normal;
   }
+}
+.inputError {
+  @extend .input !optional;
+  border: 2px solid rgba($color: #b00b0b, $alpha: 0.8) !important;
 }

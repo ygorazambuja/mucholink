@@ -13,18 +13,22 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
+  const doLogin = (data: {}) => {
+    console.log(data);
+  };
+
   return (
     <div className={styles.container}>
-      <Header></Header>
+      <Header backRoute></Header>
       <Title></Title>
-      <form className={styles.formContainer}>
+      <form className={styles.formContainer} onSubmit={handleSubmit(doLogin)}>
         <input
-          {...register("username")}
+          {...register("username", { required: true })}
           placeholder="Username"
-          className={styledInput.input}
+          className={`${styledInput.input} ${styledInput.inputError}`}
         ></input>
         <input
-          {...register("password")}
+          {...register("password", { required: true })}
           placeholder="Password"
           className={styledInput.input}
         ></input>
