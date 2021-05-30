@@ -1,0 +1,21 @@
+.topTitle {
+  font-family: "Abeezee", sans-serif;
+  font-size: 14px;
+  color: #8f8f8f;
+}
+.subTitle {
+  font-size: 18px;
+  font-family: "Abeezee", sans-serif;
+}
+.title {
+  font-family: "Lily Script One", cursive;
+  font-size: 40px;
+  text-shadow: 0px 4px 4px rgba(160, 154, 154, 0.25);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  padding-top: 50px;
+}

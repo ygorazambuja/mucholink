@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.subtitle {
+  color: grey;
+  padding: 6px;
+}
+
+.buttonContainer {
+  padding-top: 15px;
+  display: flex;
+  flex-direction: row;
+  width: 170px;
+  justify-content: space-between;
+  font-size: 24px;
+}
