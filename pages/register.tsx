@@ -7,10 +7,20 @@ import Title from "../components/Title";
 
 import styledInput from "../styles/Input.module.scss";
 import styles from "../styles/Register.module.scss";
+import buttonStyles from "../components/Buttons/Buttons.module.scss";
 import { useRef } from "react";
-import { EMAIL_CANNOT_BE_NULL, PASSWORDS_DO_NOT_MATCH, PASSWORD_CANNOT_BE_NULL, PASSWORD_MUST_CONTAIN_EIGHT_CHARACTERS_OR_MORE, USERNAME_CANNOT_BE_NULL } from "../constants";
-import { toast } from "react-toastify";
+import {
+  ACCOUNT_CREATED_MESSAGE,
+  EMAIL_CANNOT_BE_NULL,
+  LOGIN_ERROR_MESSAGE,
+  PASSWORDS_DO_NOT_MATCH,
+  PASSWORD_CANNOT_BE_NULL,
+  PASSWORD_MUST_CONTAIN_EIGHT_CHARACTERS_OR_MORE,
+  TOAST_ERROR,
+  USERNAME_CANNOT_BE_NULL,
+} from "../constants";
 import { useRouter } from "next/router";
+import Toast from "../components/Toast";
 
 export default function Register() {
   const {
@@ -22,7 +32,7 @@ export default function Register() {
   } = useForm();
 
   const password = useRef({});
-  const { push } = useRouter()
+  const { push } = useRouter();
   password.current = watch("password", "");
 
   const doRegister = async (formData: {
@@ -34,19 +44,14 @@ export default function Register() {
     const response = await RegisterUser({ ...formData });
     const json = await response.json();
 
-    if(response.status === 200) { 
-      toast.success("Account Created 🎊!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      reset()
-      push('/login')
-    } 
+    if (response.status === 200) {
+      Toast({ status: TOAST_ERROR, message: ACCOUNT_CREATED_MESSAGE });
+      reset();
+      push("/login");
+    }
+    if (response.status !== 200) {
+      Toast({ status: TOAST_ERROR, message: LOGIN_ERROR_MESSAGE });
+    }
   };
 
   return (
@@ -117,7 +122,7 @@ export default function Register() {
             {errors.confirmationPassword.message}
           </span>
         )}
-        <button type="submit" className={styles.submitButton}>
+        <button type="submit" className={buttonStyles.submitButton}>
           Register
         </button>
       </form>

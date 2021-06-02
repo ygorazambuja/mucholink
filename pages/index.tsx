@@ -2,15 +2,11 @@ import Head from "next/head";
 import Header from "../components/Header";
 import WelcomeTitle from "../components/WelcomeTitle";
 
-import { useRouter } from "next/router";
-
 import styles from "../styles/Home.module.scss";
 import HomeDoubleButton from "../components/Buttons/HomeDoubleButton";
 import MexicanLottie from "../components/MexicanLottie";
 
 export default function Home() {
-  const router = useRouter();
-
   return (
     <div>
       <Head>
@@ -21,10 +17,10 @@ export default function Home() {
 
       <main>
         <div className={styles.container}>
-          <Header></Header>
-          <WelcomeTitle></WelcomeTitle>
-          <MexicanLottie></MexicanLottie>
-          <HomeDoubleButton></HomeDoubleButton>
+          <Header />
+          <WelcomeTitle />
+          <MexicanLottie />
+          <HomeDoubleButton />
         </div>
       </main>
     </div>

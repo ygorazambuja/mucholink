@@ -1,0 +1,23 @@
+.header {
+  height: 3em;
+  display: flex;
+  margin-right: 30px;
+  margin-left: 30px;
+  justify-content: space-between;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  background-color: red;
+  transition: 0.5s;
+  &:hover {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.5em);
+  }
+}

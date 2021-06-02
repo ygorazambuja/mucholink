@@ -4,22 +4,27 @@ import Header from "../components/Header";
 import SocialButtonGroup from "../components/SocialButtonGroup";
 import Title from "../components/Title";
 
-import { toast } from "react-toastify";
-
 import styledInput from "../styles/Input.module.scss";
-import styles from "../styles/Register.module.scss";
+import buttonStyles from "../components/Buttons/Buttons.module.scss";
+import pageStyles from "../styles/Register.module.scss";
+
 import { useState } from "react";
 import {
+  LOGIN_ERROR_MESSAGE,
+  LOGIN_SUCCESSFUL,
   PASSWORD_CANNOT_BE_NULL,
   PASSWORD_MUST_CONTAIN_EIGHT_CHARACTERS_OR_MORE,
+  TOAST_ERROR,
+  TOAST_SUCCESS,
   USERNAME_CANNOT_BE_NULL,
 } from "../constants";
 import ErrorHintLabel from "../components/ErrorHintLabel";
+import { DoLogin } from "../services/usecases/DoLogin";
+import Toast from "../components/Toast";
 export default function Login() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -27,49 +32,32 @@ export default function Login() {
 
   const { push } = useRouter();
 
-  const doLogin = async (data: {}) => {
+  const doLogin = async (data: { username: string; password: string }) => {
     setLoading(true);
-    const response = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+
+    const { username, password } = data;
+    const response = await DoLogin({ username, password });
     const json = await response.json();
 
+    console.log(json);
+
+    // jaliton  1º ano
     setLoading(false);
 
     if (response.status === 200) {
-      toast.success("🎊 Login Successful ! ", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      Toast({ status: TOAST_SUCCESS, message: LOGIN_SUCCESSFUL });
       push("/home");
     }
     if (response.status === 400) {
-      toast.error("😥 Something went Wrong !", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      Toast({ status: TOAST_ERROR, message: LOGIN_ERROR_MESSAGE });
     }
   };
 
   return (
-    <div className={styles.container}>
+    <div className={pageStyles.container}>
       <Header backRoute />
       <Title />
-      <form className={styles.formContainer} onSubmit={handleSubmit(doLogin)}>
+      <form className={pageStyles.formContainer} onSubmit={handleSubmit(doLogin)}>
         <input
           {...register("username", { required: USERNAME_CANNOT_BE_NULL })}
           placeholder="Username"
@@ -101,14 +89,14 @@ export default function Login() {
         )}
         <button
           type="submit"
-          className={styles.submitButton}
+          className={buttonStyles.submitButton}
           disabled={loading}
         >
           Login
         </button>
       </form>
 
-      <SocialButtonGroup></SocialButtonGroup>
+      <SocialButtonGroup />
     </div>
   );
 }

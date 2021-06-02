@@ -10,5 +10,5 @@ export default function MexicanLottie() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-  return <Lottie options={defaultOptions} height={400} width={400}></Lottie>;
+  return <Lottie options={defaultOptions} height={350} width={'100%'} isClickToPauseDisabled></Lottie>;
 }
