@@ -1,6 +1,4 @@
-import Title from "../Title";
-
-import styles from "../../styles/WelcomeTitle.module.scss";
+import styles from "./WelcomeTitle.module.scss";
 
 export default function WelcomeTitle() {
   return (

@@ -1,4 +1,4 @@
-import styles from "../../styles/Title.module.scss";
+import styles from "./Title.module.scss";
 export default function Title() {
   return (
     <div className={styles.titleContainer}>

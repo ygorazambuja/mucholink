@@ -7,8 +7,6 @@ export default async function handler(req, res) {
 
   await dbConnect();
 
-  console.log(req.body);
-
   switch (method) {
     case "POST":
       console.log(req.body);

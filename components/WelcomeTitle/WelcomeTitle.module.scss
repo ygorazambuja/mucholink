@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .topTitle {
   font-family: "Abeezee", sans-serif;
   font-size: 14px;
@@ -5,11 +7,13 @@
 }
 .subTitle {
   font-size: 18px;
-  font-family: "Abeezee", sans-serif;
+  font-family: $--font-family;
+  padding-right: 30px;
 }
 .title {
   font-family: "Lily Script One", cursive;
   font-size: 40px;
+  padding: 5px 30px 20px 0px;
   text-shadow: 0px 4px 4px rgba(160, 154, 154, 0.25);
 }
 

@@ -1,6 +1,13 @@
 import mongoose from "mongoose";
+import bcriptjs from "bcryptjs";
 
-const UserSchema = new mongoose.Schema(
+interface UserInterface extends mongoose.Document {
+  username: string;
+  password: string;
+  email: string;
+}
+
+const UserSchema = new mongoose.Schema<UserInterface>(
   {
     email: { type: String, required: true, unique: true },
     username: { type: String, required: true, unique: true },
@@ -9,4 +16,10 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+UserSchema.pre("save", async function (next) {
+  const hash = await bcriptjs.hash(this.password, 10);
+  this.password = hash;
+});
+
+export default mongoose.models.User ||
+  mongoose.model<UserInterface>("User", UserSchema);
