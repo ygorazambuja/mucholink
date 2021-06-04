@@ -12,6 +12,12 @@ const UserSchema = new mongoose.Schema<UserInterface>(
     email: { type: String, required: true, unique: true },
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    iconGroup: { type: Array },
+    cards: { type: Array },
+    profileImg: {
+      data: Buffer,
+      contentType: String,
+    },
   },
   { timestamps: true }
 );

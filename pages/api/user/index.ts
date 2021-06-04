@@ -9,7 +9,6 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "POST":
-      console.log(req.body);
       try {
         const user = await User.create(req.body);
         return res.status(200).json(user);
@@ -18,7 +17,14 @@ export default async function handler(req, res) {
       }
 
     case "GET":
-      return res.status(200).json({ method: "GET" });
+      const { username } = req.query;
+      try {
+        const user = await User.findOne({ username }).select("-password");
+        return res.status(200).json({ user });
+      } catch (e) {
+        return res.status(400).json({ error: e });
+      }
+
     default:
       return res.status(400).json({ method: "NOT IMPLEMENTED YET" });
   }

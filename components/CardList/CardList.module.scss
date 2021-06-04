@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+@import "../Buttons/Buttons.module.scss";
+
+.container {
+  width: 400px;
+  flex-direction: column;
+  padding: 20px 30px;
+}
+
+.card {
+  @include elevateButton;
+  background-color: transparent;
+  display: flex;
+  padding: 30px;
+  border: 1px solid #989191;
+  border-radius: 18px;
+  margin-bottom: 1em;
+  span {
+    font-family: $--font-family;
+    font-size: 16px;
+  }
+}
+.icon {
+  padding-right: 30px;
+}

@@ -1,0 +1,14 @@
+@import "../Buttons/Buttons.module.scss";
+
+.group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 10px 3em;
+  button {
+    @include elevateButton;
+    padding: 10px;
+    background-color: transparent;
+  }
+}

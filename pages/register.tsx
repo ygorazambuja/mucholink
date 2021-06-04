@@ -17,6 +17,7 @@ import {
   PASSWORD_CANNOT_BE_NULL,
   PASSWORD_MUST_CONTAIN_EIGHT_CHARACTERS_OR_MORE,
   TOAST_ERROR,
+  TOAST_SUCCESS,
   USERNAME_CANNOT_BE_NULL,
 } from "../constants";
 import { useRouter } from "next/router";
@@ -45,7 +46,7 @@ export default function Register() {
     const json = await response.json();
 
     if (response.status === 200) {
-      Toast({ status: TOAST_ERROR, message: ACCOUNT_CREATED_MESSAGE });
+      Toast({ status: TOAST_SUCCESS, message: ACCOUNT_CREATED_MESSAGE });
       reset();
       push("/login");
     }
